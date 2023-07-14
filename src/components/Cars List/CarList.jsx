@@ -5,11 +5,6 @@ const CarList = () => {
   const [cars, setCars] = useState([]);
   const navigate = useNavigate();
 
-  // const handleRentMeNow = () => {
-  
-  //   navigate ("/RentalForm");
-  
-  // };
   useEffect(() => {
    
     fetch('http://localhost:8080/cars/all')
@@ -18,7 +13,7 @@ const CarList = () => {
   }, []);
 
   return (
-    <div >
+    <div className='List'>
       <h1>LIST OF AVAILABLE CARS </h1>
       {cars.map((car) => (
         <div key={car.id}>

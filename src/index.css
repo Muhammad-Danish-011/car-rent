@@ -1,6 +1,6 @@
 body {
 
-  
+  background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
     margin: 1px;
   padding: 1px;
   text-align: center;
@@ -54,6 +54,7 @@ img{
   
 }
 .booking-form{
+  background-image: url('https://images.unsplash.com/photo-1515419682769-91a8a6bdaf68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
   background-color: rgb(246, 212, 168);
   box-sizing: border-box;
   padding: 2rem;
@@ -63,5 +64,12 @@ img{
   flex-direction: row;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+
+}
+div.List{
+  background-color: #fff;
+}
+div.Detail{
+  background-color: #fff;
 
 }

@@ -12,7 +12,7 @@ const RentalForm = () => {
   const [email, setEmail] = useState('');
   const [ids, setId] = useState('');
   const{id}=useParams();
-
+const [cars,setCar]  = useState("");
   
     const[driverlicense,setDriverlicense] = useState('');
     useEffect(()=>{
@@ -61,6 +61,10 @@ const car = location.state;
     const handleCheckbox = (e) => {
         setCheckbox(e.target.checked);
     };
+    const handleCarChange = (event) => {
+        setCar(event.target.value);
+        navigate('/CarList');
+      };
     
   const totalCarPrice = () => {
     if (checkbox === false) {
@@ -118,7 +122,7 @@ const car = location.state;
         <img src="https://thumbs.dreamstime.com/b/porsche-logo-p-huven-p%C3%A5-den-gula-bilhuven-slapp-fokus-september-moskva-ryssland-148192716.jpg" alt="" />
     
       <form onSubmit={handleSubmit}>
-      <h2>Rental Form</h2><br /><br /><br />
+      <h2>RENTAL FORM</h2><br /><br /><br />
       <label htmlFor="id">ID:</label>
         <input type="id" id="id" value={id} onChange={handleIdChange} required />
         <br /><br />
@@ -147,6 +151,17 @@ const car = location.state;
         <br /><br />
              <label for="Insurance">Damage Insurance</label>
              <input type="checkbox" id="Insurance" name="Insurance" value={totalCarPrice()} onClick={handleCheckbox} /><br /><br />
+             
+        <label>
+          cars:
+          <select value={cars} onChange={handleCarChange}>
+           
+            <option value="options" > options </option>
+            <option value="Another car" > Another car</option>
+
+          </select>
+        </label>
+        <br />
         <h3>Total Cost : {(datas.rentalprice)}</h3>
         <p>Total Car Price: <span>{totalCarPrice()}</span></p>
         <button type="submit" onClick={handleSubmit} required>Check Out</button>

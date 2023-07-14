@@ -19,7 +19,7 @@ const CarsDetail = ({ productId }) => {
   }, []);
   return (
     
-    <div >
+    <div className='Detail'>
       <h1> AVAILABLE CARS </h1>
        
 

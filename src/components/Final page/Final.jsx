@@ -38,8 +38,8 @@ const handleStartover = (e) => {
   return (
     <div className="book">
         <br /><br /><br /><br />
-            <h2> BOOKED SUCCESSFULLY </h2><br /><br /><br />
-            <h2>Thanks and Enjoy your Booking</h2><br /><br /><br />
+            <h2>SUCCESSFULLY RENTED</h2><br /><br /><br />
+            <h2>THANKS FOR YOUR ORDER</h2><br /><br /><br />
     
             <button  type='submit' onClick={handleStartover}> Start Over</button><br /><br /><br /><br />
             <button  type='submit' onClick={handleSubmit}> Clear form </button><br /><br />
