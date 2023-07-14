@@ -15,7 +15,7 @@ function App() {
       <Route exact path="/" element ={<CarsHome/>}/>
           <Route exact path="/CarList" element ={<CarList/>}/>
           <Route exact path="/Product/:id" element ={<CarsDetail/>} />
-          <Route exact path="/RentalForm" element ={<RentalForm/>} />
+          <Route exact path="/RentalForm/:id" element ={<RentalForm/>} />
           <Route exact path="/Final" element ={<Final/>} />
 
        </Routes>

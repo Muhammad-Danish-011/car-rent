@@ -1,24 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 
 const RentalForm = () => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+  const[datas,setdatas]=useState('')
   const [pick, setPick] = useState('');
   const [drop, setDrop] = useState('');
   const [email, setEmail] = useState('');
-  const [id, setId] = useState('');
+  const [ids, setId] = useState('');
+  const{id}=useParams();
 
   
     const[driverlicense,setDriverlicense] = useState('');
-
+    useEffect(()=>{
+        fetch(`http://localhost:8080/cars/${id}`)
+        .then((response)=>response.json())
+        .then((data)=>setdatas(data))
+    })
 
   const navigate = useNavigate();
-//   const location = useLocation();
+  const location = useLocation();
 
-// const a = location.state;
+const car = location.state;
+
 
 
   const handleNameChange = (event) => {
@@ -50,7 +57,30 @@ const RentalForm = () => {
   const handleIdChange = (event) => {
     setId(event.target.value);
   };
-
+  const [checkbox, setCheckbox] = useState(false);
+    const handleCheckbox = (e) => {
+        setCheckbox(e.target.checked);
+    };
+    
+  const totalCarPrice = () => {
+    if (checkbox === false) {
+        const Price = datas.rentalprice;
+        const start = new Date(pick);
+        const end = new Date(drop);
+        const numOfDays = (end - start) / (1000 * 60 * 60 * 24);
+        const PriceWithOutDamage = Price * numOfDays;
+        return (PriceWithOutDamage);
+    }
+    else {
+        const carPriceGet = datas.rentalprice;
+        const start = new Date(pick);
+        const end = new Date(drop);
+        const numOfDays = (end - start) / (1000 * 60 * 60 * 24);
+        const PriceWithOutDamage = carPriceGet * numOfDays;
+        const PriceWithDamage = (numOfDays * 15000) + PriceWithOutDamage
+        return (PriceWithDamage)
+    }
+}
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -116,7 +146,9 @@ const RentalForm = () => {
         <input type="text" id="driverlicense" value={driverlicense} onChange={handleDriverLicenseChange} required />
         <br /><br />
              <label for="Insurance">Damage Insurance</label>
-             <input type="checkbox" id="Insurance" name="Insurance" value="Insurance" /><br /><br />
+             <input type="checkbox" id="Insurance" name="Insurance" value={totalCarPrice()} onClick={handleCheckbox} /><br /><br />
+        <h3>Total Cost : {(datas.rentalprice)}</h3>
+        <p>Total Car Price: <span>{totalCarPrice()}</span></p>
         <button type="submit" onClick={handleSubmit} required>Check Out</button>
         <br />
       </form>

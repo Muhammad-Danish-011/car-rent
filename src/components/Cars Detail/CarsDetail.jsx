@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const CarsDetail = ({ productId }) => {
     const [cars, setCars] = useState({});
@@ -30,7 +30,9 @@ const CarsDetail = ({ productId }) => {
 
           <p><h5>Long Description:</h5> {cars.longdescription}</p>
           <p><h5>Daily Rental Price : </h5>Rs {cars.rentalprice}/-</p>
+          <Link to={`/RentalForm/${cars.id}`}>
           <button onClick={handleRentMeNow}>Rent Me Now</button>
+          </Link>
         </div>
       
     </div>

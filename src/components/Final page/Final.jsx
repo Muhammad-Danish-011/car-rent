@@ -1,29 +1,48 @@
 import React from 'react';
-// import { useLocation } from 'react-router-dom';
-import { useNavigate} from 'react-router-dom';
+import { useLinkClickHandler, useNavigate} from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Final = () => {
     const navigate = useNavigate();
+    const [form,setForm]=useState('');
 
-//   const location = useLocation();
-
-//   const obj = location.state
 const handleStartover = (e) => {
     e.preventDefault();
         navigate("/CarList")
   
     };
-   
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        fetch('http://localhost:8081/RentalForm/delete')
+          .then((response) => response.json())
+          .then((data) => {
+            setForm(data);
+            
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      navigate("/RentalForm/id");
+        };
+    
+      useEffect(() => {
+        fetch('http://localhost:8081/RentalForm')
+          .then((response) => response.json())
+          .then((data) => setForm(data))
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }, []);
 
   return (
     <div className="book">
         <br /><br /><br /><br />
             <h2> BOOKED SUCCESSFULLY </h2><br /><br /><br />
-            <h2>Thanks and Enjoy your booking</h2><br /><br /><br />
-            {/* <p>Total Nights:{obj.totalNights}</p>
-            <p>Total Price:${obj.totalPrice}</p> */}
-            <button  type='submit' onClick={handleStartover}> Start Over</button><br /><br />
-
+            <h2>Thanks and Enjoy your Booking</h2><br /><br /><br />
+    
+            <button  type='submit' onClick={handleStartover}> Start Over</button><br /><br /><br /><br />
+            <button  type='submit' onClick={handleSubmit}> Clear form </button><br /><br />
     </div>
   );
 };

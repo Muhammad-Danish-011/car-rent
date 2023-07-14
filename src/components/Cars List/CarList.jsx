@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CarList = () => {
   const [cars, setCars] = useState([]);
   const navigate = useNavigate();
 
-  const handleRentMeNow = () => {
+  // const handleRentMeNow = () => {
   
-    navigate ("/RentalForm");
+  //   navigate ("/RentalForm");
   
-  };
+  // };
   useEffect(() => {
    
     fetch('http://localhost:8080/cars/all')
@@ -28,7 +28,9 @@ const CarList = () => {
           </h2>
           <p><h5>Short Description:</h5> {car.shortdescription}</p>
           <p><h5>Daily Rental Price : </h5>Rs {car.rentalprice}/-</p>
-          <button onClick={handleRentMeNow}>Rent Me Now</button>
+          <Link to={`/RentalForm/${car.id}`}>
+          <button >Rent Me Now</button>
+          </Link>
         </div>
       ))}
     </div>
