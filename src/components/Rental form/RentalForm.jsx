@@ -2,24 +2,23 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 
-
 const RentalForm = () => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
-  const [takedate, setTakedate] = useState('');
-  const [backdate, setBackdate] = useState('');
+  const [pick, setPick] = useState('');
+  const [drop, setDrop] = useState('');
   const [email, setEmail] = useState('');
+  const [id, setId] = useState('');
 
-  const [taketime, setTaketime] = useState('');
-  const [backtime, setBacktime] = useState('');
+  
     const[driverlicense,setDriverlicense] = useState('');
 
 
   const navigate = useNavigate();
-  const location = useLocation();
+//   const location = useLocation();
 
-const a = location.state;
+// const a = location.state;
 
 
   const handleNameChange = (event) => {
@@ -37,37 +36,32 @@ const a = location.state;
     setEmail(event.target.value);
   };
 
-  const handleTakeDateChange = (event) => {
-    setTakedate(event.target.value);
+  const handlePickChange = (event) => {
+    setPick(event.target.value);
   };
 
-  const handleBackDateChange = (event) => {
-    setBackdate(event.target.value);
+  const handleDropChange = (event) => {
+    setDrop(event.target.value);
   };
-  const handleTakeTimeChange = (event) => {
-    setTaketime(event.target.value);
-  };
-  const handleBackTimeChange = (event) => {
-    setBacktime(event.target.value);
-  };
+  
   const handleDriverLicenseChange = (event) => {
     setDriverlicense(event.target.value);
   };
-
+  const handleIdChange = (event) => {
+    setId(event.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create a payload object with the data to be inserted
     const payload = {
+     id : id ,
       name: name,
       address: address,
-      phone: phone,
       email: email,
-      takedate: takedate,
-      backdate: backdate,
-      taketime :taketime,
-      backtime :backtime,
+      phone: phone,
+     pick: pick,
+     drop: drop,
       driverlicense :driverlicense
     };
 
@@ -85,15 +79,19 @@ const a = location.state;
       .catch(error => {
         console.error('Error inserting data:', error);
       });
-   
-  };
+   navigate("/Final");
+    
+};
+
   return (
     <div className="booking-form">
         <img src="https://thumbs.dreamstime.com/b/porsche-logo-p-huven-p%C3%A5-den-gula-bilhuven-slapp-fokus-september-moskva-ryssland-148192716.jpg" alt="" />
     
       <form onSubmit={handleSubmit}>
       <h2>Rental Form</h2><br /><br /><br />
-
+      <label htmlFor="id">ID:</label>
+        <input type="id" id="id" value={id} onChange={handleIdChange} required />
+        <br /><br />
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" value={name} onChange={handleNameChange} required />
         <br /><br />
@@ -107,23 +105,19 @@ const a = location.state;
         <input type="tel" id="phone" value={phone} onChange={handlePhoneChange} required />
         <br /><br />
 
-        <label htmlFor="takedate">Take Date:</label>
-        <input type="date" id="takedate" value={takedate} onChange={handleTakeDateChange} required />
+        <label htmlFor="Pick">Pick:</label>
+        <input type="datetime-local" id="Pick" value={pick} onChange={handlePickChange} required />
         <br /><br />
-        <label htmlFor="backdate">back Date:</label>
-        <input type="date" id="backdate" value={backdate} onChange={handleBackDateChange} required />
+        <label htmlFor="Drop">Drop:</label>
+        <input type="datetime-local" id="Drop" value={drop} onChange={handleDropChange} required />
         <br /><br />
-        <label htmlFor="taketime">Take Time:</label>
-        <input type="time" id="taketime" value={taketime} onChange={handleTakeTimeChange} required />
-        <br /><br />
-        <label htmlFor="backtime">Back Time:</label>
-        <input type="time" id="backtime" value={backtime} onChange={handleBackTimeChange} required />
-        <br /><br />
+       
         <label htmlFor="driverlicense">Driver License:</label>
         <input type="text" id="driverlicense" value={driverlicense} onChange={handleDriverLicenseChange} required />
         <br /><br />
-        
-        <button type="submit">Book Now</button>
+             <label for="Insurance">Damage Insurance</label>
+             <input type="checkbox" id="Insurance" name="Insurance" value="Insurance" /><br /><br />
+        <button type="submit" onClick={handleSubmit} required>Check Out</button>
         <br />
       </form>
     </div>

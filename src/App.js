@@ -5,6 +5,7 @@ import CarList from './components/Cars List/CarList';
 import CarsDetail from './components/Cars Detail/CarsDetail';
 import RentalForm from './components/Rental form/RentalForm';
 import CarsHome from './components/Cars Home Page/CarsHome';
+import Final from './components/Final page/Final';
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,8 @@ function App() {
           <Route exact path="/CarList" element ={<CarList/>}/>
           <Route exact path="/Product/:id" element ={<CarsDetail/>} />
           <Route exact path="/RentalForm" element ={<RentalForm/>} />
+          <Route exact path="/Final" element ={<Final/>} />
+
        </Routes>
   </BrowserRouter>
 

@@ -26,8 +26,8 @@ const CarList = () => {
           <h2>
             <a href={`/product/${car.id}`}>{car.name}</a>
           </h2>
-          <p><h5>Short Description:</h5> {car.shortDescription}</p>
-          <p><h5>Daily Rental Price : </h5>Rs {car.rentalPrice}/-</p>
+          <p><h5>Short Description:</h5> {car.shortdescription}</p>
+          <p><h5>Daily Rental Price : </h5>Rs {car.rentalprice}/-</p>
           <button onClick={handleRentMeNow}>Rent Me Now</button>
         </div>
       ))}
